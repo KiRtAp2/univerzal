@@ -25,10 +25,4 @@ MODULE_CONFIG = {
     "debug": {
         "report-on-message": True
     },
-    "unz-control": {
-        "confirm-message": "ok"
-    },
-    "unz-quit": {
-        "confirm-message": "ok"
-    }
 }

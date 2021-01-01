@@ -19,7 +19,7 @@ class UnzControlModule(UnzBaseModule):
             self.config["arguement-error-mark-channel"] = "Please provide name for channel"
 
         if "confirm-message" not in self.config:
-            self.config["confirm-message"] = ""
+            self.config["confirm-message"] = "ok"
 
         if "per-guild" not in self.global_data:
             self.global_data["per-guild"] = {}

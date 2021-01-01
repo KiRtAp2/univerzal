@@ -10,7 +10,7 @@ class UnzQuitModule(UnzBaseModule):
             self.config["quit-command"] = "unz-quit"
 
         if "confirm-message" not in self.config:
-            self.config["confirm-message"] = ""
+            self.config["confirm-message"] = "ok"
 
     async def event_on_message(self, message, client):
         if message.content.startswith(self.config["quit-command"]):
