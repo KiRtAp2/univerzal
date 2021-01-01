@@ -19,6 +19,7 @@ LOADED_MODULES = [
     "debug",
     "unz-control",
     "unz-quit",
+    "unz-message",
 ]
 
 MODULE_CONFIG = {

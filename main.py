@@ -46,7 +46,10 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    log_msg = f"Message :: {message.channel.name} ({message.channel.id}) :: {message.author} ({message.author.id}) :: {message.content}"
+    if type(message.channel) == discord.TextChannel:
+        log_msg = f"Message :: {message.channel.name} ({message.channel.id}) :: {message.author} ({message.author.id}) :: {message.content}"
+    else:
+        log_msg = f"Message :: {message.channel.id} :: {message.author} ({message.author.id}) :: {message.content}"
     logging.info(log_msg)
     for module in loaded_modules:
         await module.event_on_message(message, client)
