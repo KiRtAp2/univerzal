@@ -1,4 +1,5 @@
 import logging
+import os
 
 
 # Database settings
@@ -13,6 +14,8 @@ LOG_FILEMODE = "w"
 LOG_FORMAT = "%(asctime)s :: %(levelname)s :: %(message)s"
 LOG_DATEFMT = "%Y-%m-%d %H:%M:%S"
 
+# Media storage settings
+MEDIA_IMAGES_DIR = os.path.join(os.getcwd(), "media", "images")
 
 # Module settings
 LOADED_MODULES = [

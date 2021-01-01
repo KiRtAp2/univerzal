@@ -62,11 +62,3 @@ class UnzDebugModule(UnzBaseModule):
 
         if message.content.startswith("debug_get_global_data"):
             await message.channel.send(f"{self.global_data}")
-
-
-def get_guild_or_channel(message):
-    # return guild id if message is in guild, else channel id
-    if message.guild is not None:
-        return message.guild.id
-    else:
-        return message.channel.id
