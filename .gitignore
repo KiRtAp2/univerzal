@@ -1,1 +1,4 @@
 SECRET
+__pycache__/
+db.json
+*.log
