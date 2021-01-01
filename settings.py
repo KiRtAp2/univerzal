@@ -17,7 +17,8 @@ LOG_DATEFMT = "%Y-%m-%d %H:%M:%S"
 # Module settings
 LOADED_MODULES = [
     "debug",
-    "unz-control"
+    "unz-control",
+    "unz-quit",
 ]
 
 MODULE_CONFIG = {
@@ -25,6 +26,9 @@ MODULE_CONFIG = {
         "report-on-message": True
     },
     "unz-control": {
+        "confirm-message": "ok"
+    },
+    "unz-quit": {
         "confirm-message": "ok"
     }
 }
