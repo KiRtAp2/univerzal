@@ -50,4 +50,4 @@ class UnzControlModule(UnzBaseModule):
             else:
                 self.global_data["marked-ids"][args[0]] = message.channel.id
                 if self.config["confirm-message"]:
-                    await message.channel.send(self.config["confirm-message"])
+                    await message.delete()
