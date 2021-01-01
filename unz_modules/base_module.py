@@ -1,5 +1,7 @@
 import logging
 
+from . import EventHandlerStatus
+
 
 class UnzBaseModule:
 
@@ -23,10 +25,10 @@ class UnzBaseModule:
         pass
 
     async def event_on_ready(self, client):
-        pass
+        return EventHandlerStatus.PASS
 
     async def event_on_message(self, message, client):
-        pass
+        return EventHandlerStatus.PASS
 
     def get_db(self):
         return self.local_data
@@ -51,6 +53,7 @@ class UnzDebugModule(UnzBaseModule):
             if "blob" in self.local_data:
                 msg += f" blob: {self.local_data['blob']}"
             logging.debug(msg)
+        return EventHandlerStatus.PASS
 
     async def event_on_message(self, message, client):
         if self.config["report-on-message"]:
@@ -62,3 +65,4 @@ class UnzDebugModule(UnzBaseModule):
 
         if message.content.startswith("debug_get_global_data"):
             await message.channel.send(f"{self.global_data}")
+        return EventHandlerStatus.PASS

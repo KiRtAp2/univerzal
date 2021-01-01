@@ -1,4 +1,4 @@
-from . import UnzBaseModule
+from . import UnzBaseModule, EventHandlerStatus
 
 
 class UnzQuitModule(UnzBaseModule):
@@ -17,3 +17,4 @@ class UnzQuitModule(UnzBaseModule):
             if self.config["confirm-message"]:
                 await message.channel.send(self.config["confirm-message"])
             await client.close()
+            return EventHandlerStatus.BLOCK

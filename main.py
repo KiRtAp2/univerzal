@@ -5,7 +5,7 @@ import asyncio
 import settings as stg
 import db_handler
 from module_registry import get_default_registry
-from unz_modules.base_module import UnzBaseModule
+from unz_modules import UnzBaseModule, EventHandlerStatus
 
 
 logging.basicConfig(
@@ -41,7 +41,9 @@ async def on_ready():
     logging.info(f"Client logged in as {app_info.name}")
 
     for module in loaded_modules:
-        await module.event_on_ready(client)
+        status = await module.event_on_ready(client)
+        if status is not None and status == EventHandlerStatus.BLOCK:
+            break
 
 
 @client.event
@@ -52,7 +54,9 @@ async def on_message(message):
         log_msg = f"Message :: {message.channel.id} :: {message.author} ({message.author.id}) :: {message.content}"
     logging.info(log_msg)
     for module in loaded_modules:
-        await module.event_on_message(message, client)
+        status = await module.event_on_message(message, client)
+        if status is not None and status == EventHandlerStatus.BLOCK:
+            break
 
 
 @client.event

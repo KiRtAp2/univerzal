@@ -1,4 +1,4 @@
-from . import UnzBaseModule
+from . import UnzBaseModule, EventHandlerStatus
 
 
 class UnzMessageModule(UnzBaseModule):
@@ -24,10 +24,10 @@ class UnzMessageModule(UnzBaseModule):
             cmd, *args = message.content.split()
             if len(args) < 1:
                 await message.channel.send(self.config["argument-error"])
-                return
+                return EventHandlerStatus.BLOCK
             chn_name = args[0]
             if chn_name not in self.global_data["marked-ids"]:
                 await message.channel.send(self.config["channel-error"])
-                return
+                return EventHandlerStatus.BLOCK
             channel = client.get_channel(self.global_data["marked-ids"][chn_name])
             await channel.send(" ".join(args[1:]))

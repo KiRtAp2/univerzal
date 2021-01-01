@@ -1,4 +1,4 @@
-from . import UnzBaseModule, get_guild_or_channel
+from . import UnzBaseModule, get_guild_or_channel, EventHandlerStatus
 
 
 class UnzControlModule(UnzBaseModule):
@@ -36,18 +36,22 @@ class UnzControlModule(UnzBaseModule):
             self.global_data["per-guild"][gcid]["bot-muted"] = True
             if self.config["confirm-message"]:
                 await message.channel.send(self.config["confirm-message"])
+            return EventHandlerStatus.BLOCK
 
         if message.content.startswith(self.config["unmute-command"]):
             self.global_data["per-guild"][gcid]["bot-muted"] = False
             if self.config["confirm-message"]:
                 await message.channel.send(self.config["confirm-message"])
+            return EventHandlerStatus.BLOCK
 
         if message.content.startswith(self.config["mark-channel-command"]+" "):
             cmd, *args = message.content.split()
             if len(args) < 1:
                 await message.channel.send(self.config["arguement-error-mark-channel"])
-                return
+                return EventHandlerStatus.BLOCK
             else:
                 self.global_data["marked-ids"][args[0]] = message.channel.id
                 if self.config["confirm-message"]:
                     await message.delete()
+
+            return EventHandlerStatus.BLOCK

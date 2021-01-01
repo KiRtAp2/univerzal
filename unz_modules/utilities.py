@@ -1,5 +1,6 @@
 import discord
 import os
+from enum import Enum
 
 import settings as stg
 
@@ -26,3 +27,8 @@ async def send_message(channel, message, **kwargs):
         ))
     else:
         await channel.send(message.format(**kwargs))
+
+
+class EventHandlerStatus(Enum):
+    BLOCK = 1
+    PASS = 2
