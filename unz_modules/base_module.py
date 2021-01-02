@@ -7,6 +7,7 @@ class UnzBaseModule:
 
     name = "abstract-base"
     global_data = {}
+    global_config = {}
 
     def __init__(self, db={}, config={}):
         self.config = config

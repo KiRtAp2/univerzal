@@ -26,4 +26,5 @@ def get_default_registry():
     reg.autoregister(unz_modules.UnzControlModule)
     reg.autoregister(unz_modules.UnzQuitModule)
     reg.autoregister(unz_modules.UnzMessageModule)
+    reg.autoregister(unz_modules.UnzWordsModule)
     return reg

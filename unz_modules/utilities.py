@@ -1,6 +1,7 @@
 import discord
 import os
 from enum import Enum
+import logging
 
 import settings as stg
 
@@ -11,6 +12,17 @@ def get_guild_or_channel(message):
         return message.guild.id
     else:
         return message.channel.id
+
+
+def read_file(filename):
+    path = os.path.join(stg.MEDIA_FILES_DIR, filename)
+    try:
+        with open(path) as f:
+            data = f.read()
+        return data
+    except (FileNotFoundError, PermissionError):
+        logging.error(f"read_file: Unable to read {filename} in {stg.MEDIA_FILES_DIR}")
+        raise
 
 
 async def send_message(channel, message, **kwargs):

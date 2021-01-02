@@ -15,6 +15,7 @@ LOG_FORMAT = "%(asctime)s :: %(levelname)s :: %(message)s"
 LOG_DATEFMT = "%Y-%m-%d %H:%M:%S"
 
 # Media storage settings
+MEDIA_FILES_DIR = os.path.join(os.getcwd(), "media", "files")
 MEDIA_IMAGES_DIR = os.path.join(os.getcwd(), "media", "images")
 
 # Module settings
@@ -23,6 +24,7 @@ LOADED_MODULES = [
     "unz-control",
     "unz-quit",
     "unz-message",
+    "unz-words",
 ]
 
 MODULE_CONFIG = {
