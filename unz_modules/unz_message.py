@@ -7,7 +7,7 @@ class UnzMessageModule(UnzBaseModule):
 
     def check_data(self):
         if "command" not in self.config:
-            self.config["command"] = "."
+            self.config["command"] = "unz-message"
 
         if "argument-error" not in self.config:
             self.config["argument-error"] = \
@@ -30,4 +30,11 @@ class UnzMessageModule(UnzBaseModule):
                 await message.channel.send(self.config["channel-error"])
                 return EventHandlerStatus.BLOCK
             channel = client.get_channel(self.global_data["marked-ids"][chn_name])
-            await channel.send(" ".join(args[1:]))
+            msg = " ".join(args[1:])
+            if message.attachments:
+                atchn = message.attachments[0]
+                fileobj = await atchn.to_file()
+                await channel.send(msg, file=fileobj)
+            else:
+                await channel.send(msg)
+            return EventHandlerStatus.BLOCK
