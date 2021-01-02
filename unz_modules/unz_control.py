@@ -5,22 +5,15 @@ class UnzControlModule(UnzBaseModule):
 
     name = "unz-control"
 
+    default_config = {
+        "mute-command": "unz-mute",
+        "unmute-command": "unz-unmute",
+        "mark-channel-command": "unz-control-mark",
+        "arguement-error-mark-channel": "Please provide name for channel",
+        "confirm-message": "ok",
+    }
+
     def check_data(self):
-        if "mute-command" not in self.config:
-            self.config["mute-command"] = "unz-mute"
-
-        if "unmute-command" not in self.config:
-            self.config["unmute-command"] = "unz-unmute"
-
-        if "mark-channel-command" not in self.config:
-            self.config["mark-channel-command"] = "unz-control-mark"
-
-        if "arguement-error-mark-channel" not in self.config:
-            self.config["arguement-error-mark-channel"] = "Please provide name for channel"
-
-        if "confirm-message" not in self.config:
-            self.config["confirm-message"] = "ok"
-
         if "per-guild" not in self.global_data:
             self.global_data["per-guild"] = {}
 

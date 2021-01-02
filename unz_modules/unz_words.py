@@ -7,16 +7,13 @@ class UnzWordsModule(UnzBaseModule):
 
     name = "unz-words"
 
+    default_config = {
+        "dictionary-filename": "dictionary.txt",
+        "enable-command": True,
+        "command": "unz-word"
+    }
+
     def check_data(self):
-        if "dictionary-filename" not in self.config:
-            self.config["dictionary-filename"] = "dictionary.txt"
-
-        if "enable-command" not in self.config:
-            self.config["enable-command"] = True
-
-        if "command" not in self.config:
-            self.config["command"] = "unz-word"
-
         self.global_config["dictionary"] = \
             read_file(self.config["dictionary-filename"]).splitlines()
 

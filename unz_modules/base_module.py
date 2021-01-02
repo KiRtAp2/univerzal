@@ -9,6 +9,8 @@ class UnzBaseModule:
     global_data = {}
     global_config = {}
 
+    default_config = {}
+
     def __init__(self, db={}, config={}):
         self.config = config
         if self.name in db:
@@ -16,11 +18,17 @@ class UnzBaseModule:
         else:
             self.local_data = {}
 
+        self.check_config()
         self.check_data()
 
     @staticmethod
     def get_empty_database(self):
         return {}
+
+    def check_config(self):
+        for key, val in self.default_config.items():
+            if key not in self.config:
+                self.config[key] = val
 
     def check_data(self):
         pass
@@ -39,13 +47,12 @@ class UnzDebugModule(UnzBaseModule):
 
     name = "debug"
 
+    default_config = {
+        "report-on-ready": True,
+        "report-on-message": True
+    }
+
     def check_data(self):
-        if "report-on-ready" not in self.config:
-            self.config["report-on-ready"] = True
-
-        if "report-on-message" not in self.config:
-            self.config["report-on-message"] = True
-
         logging.debug(f"Debug database: {self.local_data}")
 
     async def event_on_ready(self, client):

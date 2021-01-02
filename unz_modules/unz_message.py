@@ -5,17 +5,13 @@ class UnzMessageModule(UnzBaseModule):
 
     name = "unz-message"
 
+    default_config = {
+        "command": "unz-message",
+        "arguement-error": "Too few arguements. Use unz-message (channel-name) (message)",
+        "channel-error": "Unknown channel"
+    }
+
     def check_data(self):
-        if "command" not in self.config:
-            self.config["command"] = "unz-message"
-
-        if "argument-error" not in self.config:
-            self.config["argument-error"] = \
-                f"Too few arguments. Use {self.config['command']} (channel-name) (message)"
-
-        if "channel-error" not in self.config:
-            self.config["channel-error"] = "Unknown channel"
-
         if "marked-ids" not in self.global_data:
             self.global_data["marked-ids"] = {}
 
@@ -23,7 +19,7 @@ class UnzMessageModule(UnzBaseModule):
         if message.content.startswith(self.config["command"]+" "):
             cmd, *args = message.content.split()
             if len(args) < 1:
-                await message.channel.send(self.config["argument-error"])
+                await message.channel.send(self.config["arguement-error"])
                 return EventHandlerStatus.BLOCK
             chn_name = args[0]
             if chn_name not in self.global_data["marked-ids"]:
