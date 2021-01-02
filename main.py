@@ -48,6 +48,8 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    if message.author == client.user or not message.content:
+        return
     if type(message.channel) == discord.TextChannel:
         log_msg = f"Message :: {message.channel.name} ({message.channel.id}) :: {message.author} ({message.author.id}) :: {message.content}"
     else:

@@ -25,6 +25,7 @@ LOADED_MODULES = [
     "unz-quit",
     "unz-message",
     "unz-words",
+    "rps",
 ]
 
 MODULE_CONFIG = {

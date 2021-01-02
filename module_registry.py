@@ -1,4 +1,5 @@
 import unz_modules
+import games
 
 
 class UnzModuleRegistry:
@@ -27,4 +28,5 @@ def get_default_registry():
     reg.autoregister(unz_modules.UnzQuitModule)
     reg.autoregister(unz_modules.UnzMessageModule)
     reg.autoregister(unz_modules.UnzWordsModule)
+    reg.autoregister(games.RPSModule)
     return reg
