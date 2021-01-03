@@ -30,4 +30,5 @@ def get_default_registry():
     reg.autoregister(unz_modules.UnzWordsModule)
     reg.autoregister(unz_modules.UnzAutoreplyModule)
     reg.autoregister(games.RPSModule)
+    reg.autoregister(unz_modules.audio.UnzAudioModule)
     return reg

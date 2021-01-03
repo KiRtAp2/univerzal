@@ -20,6 +20,7 @@ LOG_DATEFMT = "%Y-%m-%d %H:%M:%S"
 # Media storage settings
 MEDIA_FILES_DIR = os.path.join(os.getcwd(), "media", "files")
 MEDIA_IMAGES_DIR = os.path.join(os.getcwd(), "media", "images")
+MEDIA_AUDIO_DIR = os.path.join(os.getcwd(), "media", "audio")
 
 # Module settings
 LOADED_MODULES = [
@@ -30,6 +31,7 @@ LOADED_MODULES = [
     "unz-words",
     "unz-autoreply",
     "rps",
+    "unz-audio",
 ]
 
 MODULE_CONFIG = {
