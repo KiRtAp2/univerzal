@@ -1,5 +1,8 @@
 import logging
 import os
+import random
+
+from misc import RandomRegexPersonality, RandomChoicePersonality
 
 
 # Database settings
@@ -25,6 +28,7 @@ LOADED_MODULES = [
     "unz-quit",
     "unz-message",
     "unz-words",
+    "unz-autoreply",
     "rps",
 ]
 
@@ -32,4 +36,30 @@ MODULE_CONFIG = {
     "debug": {
         "report-on-message": True
     },
+    "unz-autoreply": {
+        "personalities": [
+            RandomRegexPersonality(
+                [
+                    "univer(s|z)al",
+                    "bot",
+                    "discord",
+                ],
+                [
+                    "Univerzal is a framework for discord bots!",
+                    lambda: "Univerzal is univer{}al".format(
+                        random.choice(["s", "z"])
+                    )
+                ]
+            ),
+            RandomChoicePersonality(
+                [
+                    "bot"
+                ],
+                [
+                    "Beep boop."
+                ],
+                priority=1
+            )
+        ]
+    }
 }
