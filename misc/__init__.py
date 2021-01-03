@@ -1,1 +1,1 @@
-from .personality import RandomChoicePersonality, RandomRegexPersonality
+from .personality import BasePersonality, RandomChoicePersonality, RandomRegexPersonality
