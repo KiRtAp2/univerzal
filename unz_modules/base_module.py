@@ -18,6 +18,7 @@ class UnzBaseModule:
         else:
             self.local_data = {}
 
+        self.secondary_interval = 0
         self.check_config()
         self.check_data()
 
@@ -38,6 +39,9 @@ class UnzBaseModule:
 
     async def event_on_message(self, message, client):
         return EventHandlerStatus.PASS
+
+    async def loop_function(self, client):
+        pass
 
     def get_db(self):
         return self.local_data

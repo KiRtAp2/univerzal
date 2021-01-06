@@ -30,6 +30,7 @@ LOADED_MODULES = [
     "unz-message",
     "unz-words",
     "unz-autoreply",
+    "unz-automessage",
     "rps",
     "unz-audio",
 ]

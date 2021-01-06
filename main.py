@@ -73,6 +73,27 @@ async def db_saver():
         await asyncio.sleep(stg.DB_AUTOSAVE_INTERVAL)
 
 
+async def secondary_loop():
+    await client.wait_until_ready()
+    time = 0
+    seconds_to_wait = 1000
+    while not client.is_closed():
+        for module in loaded_modules:
+            interval = module.secondary_interval
+            if interval == 0:
+                continue
+
+            if time % interval == 0:
+                await module.loop_function(client)
+
+            next_rep = (int(time / interval) + 1) * interval
+            seconds_to_wait = min((seconds_to_wait, next_rep-time))
+
+        await asyncio.sleep(seconds_to_wait)
+        seconds_to_wait = 1000
+
+
 if __name__ == "__main__":
     client.loop.create_task(db_saver())
+    client.loop.create_task(secondary_loop())
     client.run(SECRET)
